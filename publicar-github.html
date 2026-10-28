@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cómo publicar tu sitio en GitHub Pages</title>
+<style>
+  :root {
+    --bg: #f4f6f8;
+    --card-bg: #ffffff;
+    --text: #1a1a2e;
+    --muted: #6b7280;
+    --accent: #4f46e5;
+    --accent-hover: #4338ca;
+    --border: #e5e7eb;
+    --code-bg: #f1f1f5;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #0f1117;
+      --card-bg: #1a1d27;
+      --text: #f1f1f5;
+      --muted: #9ca3af;
+      --accent: #6366f1;
+      --accent-hover: #818cf8;
+      --border: #2d303c;
+      --code-bg: #11131a;
+    }
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    padding: 32px 16px 60px;
+  }
+
+  .container {
+    max-width: 760px;
+    margin: 0 auto;
+  }
+
+  .back-link {
+    display: inline-block;
+    margin-bottom: 20px;
+    color: var(--accent);
+    text-decoration: none;
+    font-size: 14px;
+  }
+  .back-link:hover { text-decoration: underline; }
+
+  h1 {
+    font-size: 24px;
+    margin-bottom: 6px;
+  }
+
+  .intro {
+    color: var(--muted);
+    margin-bottom: 32px;
+    font-size: 15px;
+    line-height: 1.6;
+  }
+
+  .method-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 24px 26px;
+    margin-bottom: 24px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+  }
+
+  .method-card h2 {
+    font-size: 19px;
+    margin: 0 0 4px;
+  }
+
+  .method-card > p.desc {
+    color: var(--muted);
+    font-size: 14px;
+    margin: 6px 0 18px;
+  }
+
+  .step-title {
+    font-size: 15.5px;
+    font-weight: 600;
+    margin: 22px 0 10px;
+  }
+  .step-title:first-of-type { margin-top: 6px; }
+
+  ol {
+    margin: 0;
+    padding-left: 20px;
+  }
+
+  ol li {
+    margin-bottom: 12px;
+    font-size: 14.5px;
+    line-height: 1.55;
+  }
+
+  ol li strong { color: var(--text); }
+
+  ul {
+    margin: 6px 0 0;
+    padding-left: 20px;
+  }
+  ul li { font-size: 14px; margin-bottom: 6px; }
+
+  code {
+    background: var(--code-bg);
+    padding: 2px 6px;
+    border-radius: 5px;
+    font-size: 13px;
+    font-family: 'SFMono-Regular', Consolas, Menlo, monospace;
+  }
+
+  pre {
+    background: var(--code-bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px 16px;
+    overflow-x: auto;
+    font-size: 13px;
+    font-family: 'SFMono-Regular', Consolas, Menlo, monospace;
+    margin: 10px 0 0;
+    line-height: 1.6;
+  }
+
+  pre .comment { color: var(--muted); }
+
+  .warning {
+    margin-top: 10px;
+    font-size: 13.5px;
+    color: var(--text);
+    background: var(--code-bg);
+    border-left: 3px solid var(--accent);
+    padding: 8px 12px;
+    border-radius: 0 6px 6px 0;
+  }
+
+  .final-note {
+    margin-top: 28px;
+    font-size: 14.5px;
+    color: var(--text);
+    text-align: center;
+  }
+</style>
+</head>
+<body>
+  <div class="container">
+    <a class="back-link" href="index.html">← Volver al login</a>
+
+    <h1>Cómo crear y publicar tu index.html en GitHub Pages</h1>
+    <p class="intro">Crear y publicar tu archivo <code>index.html</code> en GitHub (para que sea visible en la web usando GitHub Pages) es muy sencillo. Tienes dos formas de hacerlo: directamente desde la página web de GitHub (más rápido si es un archivo suelto) o usando Git desde tu computadora.</p>
+
+    <div class="method-card">
+      <h2>Método 1: Desde la página web de GitHub (sin instalar nada)</h2>
+
+      <p class="step-title">Paso 1: Crear un nuevo repositorio</p>
+      <ol>
+        <li>Entra a <a href="https://github.com/" target="_blank" rel="noopener">GitHub</a> e inicia sesión en tu cuenta.</li>
+        <li>En la esquina superior derecha, haz clic en el botón <code>+</code> y selecciona <strong>New repository</strong> (Nuevo repositorio).</li>
+        <li><strong>Repository name:</strong> escribe el nombre que quieras (por ejemplo, <code>mi-pagina-web</code>).</li>
+        <li>Selecciona la opción <strong>Public</strong> (Público) para que GitHub Pages sea gratuito y visible.</li>
+        <li>⚠️ Muy importante: marca la casilla <strong>Add a README file</strong> (Agregar un archivo README). Esto creará el repositorio con una rama base lista para usar.</li>
+        <li>Haz clic en el botón verde <strong>Create repository</strong>.</li>
+      </ol>
+
+      <p class="step-title">Paso 2: Crear o subir tu archivo index.html</p>
+      <ol>
+        <li>Ya dentro de tu nuevo repositorio, haz clic en el botón <strong>Add file</strong> (Agregar archivo) y selecciona <strong>Create new file</strong> (Crear nuevo archivo).</li>
+        <li>En el espacio donde dice <code>Name your file...</code>, escribe exactamente:
+          <pre>index.html</pre>
+          (Asegúrate de que esté todo en minúsculas y sin acentos, ya que los servidores distinguen mayúsculas y minúsculas).
+        </li>
+        <li>Pega el código HTML de tu página en el editor de texto grande.</li>
+        <li>Baja un poco y haz clic en el botón verde <strong>Commit changes...</strong>, y luego confirma haciendo clic en <strong>Commit changes</strong> en la ventanita que aparece.</li>
+      </ol>
+
+      <p class="step-title">Paso 3: Activar GitHub Pages para publicar tu web</p>
+      <ol>
+        <li>En la parte superior de tu repositorio, busca y haz clic en la pestaña <strong>Settings</strong> (Configuración, tiene el ícono de una tuerca).</li>
+        <li>En el menú de la izquierda, busca la sección <strong>Code and automation</strong> y haz clic en <strong>Pages</strong>.</li>
+        <li>En la sección <strong>Build and deployment &gt; Branch</strong>:
+          <ul>
+            <li>En el menú desplegable que dice <code>None</code>, cámbialo a <code>main</code> (o <code>master</code>, según cómo se llame tu rama principal).</li>
+            <li>Deja la carpeta en <code>/ (root)</code>.</li>
+          </ul>
+        </li>
+        <li>Haz clic en el botón <strong>Save</strong> (Guardar).</li>
+      </ol>
+
+      <p class="step-title">Paso 4: ¡Listo! Visita tu sitio web</p>
+      <ol>
+        <li>Espera un minuto o dos para que GitHub procese los archivos.</li>
+        <li>Recarga la página de <strong>Settings &gt; Pages</strong> y verás un mensaje arriba que dice: <em>"Your site is live at..."</em> seguido de un enlace. ¡Ese es el enlace público de tu <code>index.html</code>!</li>
+      </ol>
+    </div>
+
+    <div class="method-card">
+      <h2>Método 2: Usar Git desde tu computadora (recomendado para proyectos)</h2>
+      <p class="desc">Si prefieres trabajar localmente con tu editor de código favorito (como Visual Studio Code):</p>
+
+      <ol>
+        <li>Crea una carpeta en tu computadora para tu proyecto y dentro crea tu archivo llamado <code>index.html</code>.</li>
+        <li>Abre la terminal o consola en esa carpeta y ejecuta los siguientes comandos uno por uno:
+<pre><span class="comment"># 1. Inicializar git en la carpeta</span>
+git init
+
+<span class="comment"># 2. Agregar tu archivo index.html</span>
+git add index.html
+
+<span class="comment"># 3. Guardar los cambios con un mensaje</span>
+git commit -m "Primer commit: subiendo index.html"
+
+<span class="comment"># 4. Vincular tu carpeta con el repositorio que creaste en GitHub (reemplaza la URL por la tuya)</span>
+git remote add origin https://github.com/tu-usuario/nombre-de-tu-repo.git
+
+<span class="comment"># 5. Subir los archivos a la rama main</span>
+git branch -M main
+git push -u origin main</pre>
+        </li>
+        <li>Una vez subido tu código a GitHub mediante estos comandos, solo debes seguir el <strong>Paso 3</strong> del método anterior para activar GitHub Pages en la configuración de tu repositorio y tu página estará en línea.</li>
+      </ol>
+    </div>
+
+    <p class="final-note">¿Tienes alguna duda con alguno de los pasos o necesitas ayuda con el código de tu <code>index.html</code>?</p>
+  </div>
+</body>
+</html>
